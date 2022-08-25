@@ -1,0 +1,35 @@
+.panal-container {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #fff;
+  z-index: 4;
+  overflow: hidden;
+  display: flex;
+  box-sizing: border-box;
+  .left {
+    width: 20%;
+    height: 100vh;
+  }
+  .right {
+    width: 80%;
+    height: 100vh;
+  }
+}
+@media screen and (max-width: 850px) {
+  .panal-container {
+    flex-direction: column;
+    .left {
+      width: 99.98%;
+      height: max-content;
+      z-index: 8;
+    }
+    .right {
+      width: 99.98%;
+      margin-top: 50px;
+      z-index: 7;
+    }
+  }
+}

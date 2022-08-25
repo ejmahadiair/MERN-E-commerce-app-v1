@@ -1,0 +1,26 @@
+.order-container {
+  border: 1px solid red;
+  margin-top: 20px;
+  .shiping-log-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #999999;
+    padding: 10px;
+    .item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .hr-line {
+      width: 25%;
+      border-bottom: 1.5px solid #999999;
+    }
+  }
+  .active-log {
+    color: black;
+    svg {
+      color: tomato;
+    }
+  }
+}

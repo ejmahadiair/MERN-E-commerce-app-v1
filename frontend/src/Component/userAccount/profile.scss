@@ -1,0 +1,197 @@
+.profile-container {
+  display: flex;
+  width: 80%;
+  margin: 30px auto 10px auto;
+  position: relative;
+  .profile-left-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    .profile-left {
+      background-color: rgb(245, 239, 239);
+      width: 250px;
+      margin: 0 auto;
+      .profile-control-buttons {
+        display: flex;
+        flex-direction: column;
+        max-height: 0px;
+        overflow: hidden;
+        transition: max-height 0.6s ease-out;
+        .profile-select-view {
+          text-align: center;
+          letter-spacing: 2px;
+          cursor: pointer;
+          margin: 5px 0;
+          padding: 10px;
+          border: none;
+          background-color: transparent;
+          transition: all 0.4s ease-in-out;
+          &:hover {
+            background-color: tomato;
+            color: #fff;
+            transform: scale(1.04);
+          }
+        }
+      }
+      &:hover .profile-control-buttons {
+        max-height: 500px;
+      }
+    }
+  }
+  .profile-right {
+    width: 100%;
+    height: max-content;
+    margin: 50px auto;
+    .profile-control-views {
+      width: 100%;
+      height: 100%;
+      .profile-view {
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: space-around;
+        padding: 10px;
+        .profile-view-left {
+          width: max-content;
+          display: flex;
+          justify-content: space-around;
+          align-items: flex-start;
+          flex-direction: column;
+          .profile-detail {
+            .tag-text {
+              color: #6a6969;
+            }
+          }
+        }
+        .profile-view-right {
+          width: 20%;
+          margin-left: 5px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          .profile-view-image {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            overflow: hidden;
+          }
+          img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+      }
+      .edit-profile-view {
+        padding: 10px;
+        form {
+          margin: 0 auto;
+          width: fit-content;
+          .edit-profile-image {
+            width: 100%;
+            height: max-content;
+            margin-bottom: 20px;
+            .upload-new-photo {
+              width: 60px;
+              height: 60px;
+              img {
+                width: inherit;
+                height: inherit;
+              }
+              p {
+                font-size: small;
+              }
+              cursor: pointer;
+              input {
+                // display: none;
+                &::-webkit-file-upload-button {
+                  display: none;
+                }
+              }
+            }
+          }
+          .edit-profile-detail {
+            display: flex;
+            gap: 60px;
+            .edit-profile-field {
+              margin: 20px 0;
+              .edit-profile-input-tag {
+                letter-spacing: 1.2px;
+                margin-bottom: 5px;
+              }
+            }
+          }
+          .update-edited-profile {
+            margin-top: 10px;
+          }
+        }
+      }
+      .edit-password-view {
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+        form {
+          padding: 10px;
+          box-sizing: border-box;
+          .old-pass-field {
+            display: flex;
+            align-items: center;
+            .update-pass-vissivility {
+              cursor: pointer;
+              width: fit-content;
+              height: fit-content;
+              margin: 0 auto;
+            }
+          }
+          .new-pass-field {
+            margin: 15px 0;
+            input {
+              margin: 0 10px 0 0;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1050px) {
+  .profile-container {
+    .profile-right {
+      .profile-control-views {
+        .profile-view {
+          flex-direction: column-reverse;
+          justify-content: center;
+          align-items: center;
+          gap: 20px;
+          .profile-view-right {
+            width: 100%;
+          }
+        }
+        .edit-profile-view {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          .edit-profile-detail {
+            display: flex;
+            flex-direction: column;
+            gap: 0px !important;
+            .edit-profile-field {
+              margin: 10px 0 !important;
+            }
+          }
+        }
+        .edit-password-view {
+          form {
+            .new-pass-field {
+              display: flex;
+              flex-direction: column;
+              gap: 15px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

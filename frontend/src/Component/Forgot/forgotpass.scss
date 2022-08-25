@@ -1,0 +1,102 @@
+.forgotpass-container {
+  background-color: #999999;
+  width: 99.9vw;
+  height: 99.5vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 5;
+
+  .forgotpass {
+    padding: 20px 80px;
+    width: 600px;
+    height: 650px;
+    box-sizing: border-box;
+    margin: 50px auto;
+    background-color: #fff;
+    border-radius: 15px;
+    position: relative;
+    .close-forgotpass-tab {
+      cursor: pointer;
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      transition: 0.2s ease-in-out;
+      .line {
+        width: 15px;
+        height: 1.5px;
+        background-color: #000000;
+        position: absolute;
+        top: 50%;
+        left: 25%;
+        transform: translate(-50%, -50%);
+      }
+      .line1 {
+        transform: rotate(45deg);
+      }
+      .line2 {
+        transform: rotate(-45deg);
+      }
+      &:hover {
+        background-color: #e7e7e8;
+      }
+    }
+    .text-container {
+      margin: 20px 0;
+      .logo {
+        text-align: center;
+      }
+      .text-tag {
+        margin: 20px 0;
+      }
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      input {
+        padding: 20px 10px;
+        border: 1px solid #999999;
+        outline: none;
+        &:focus {
+          outline: 2px solid #1d9bf0;
+          border-radius: 5px;
+        }
+      }
+      .message {
+        margin: 20px 0;
+        text-align: justify;
+      }
+      button {
+        cursor: pointer;
+        position: absolute;
+        bottom: 50px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 70%;
+        padding: 18px 10px;
+        background-color: #999999;
+        border: none;
+        border-radius: 50px;
+        color: white;
+        font-size: 15px;
+        font-weight: bolder;
+        transition: 0.4s ease-in-out;
+        &:hover {
+          transform: scale(1.03) translateX(-50%);
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 800px) {
+  .forgotpass-container {
+    height: 101vh;
+    overflow-x: hidden;
+    .forgotpass {
+      width: 90%;
+    }
+  }
+}

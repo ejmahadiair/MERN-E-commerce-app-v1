@@ -1,0 +1,39 @@
+.payment-success-container {
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  .payment-done {
+    width: 80px;
+    height: 80px;
+    background-color: tomato;
+    border-radius: 50%;
+    position: relative;
+    svg {
+      color: white;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 80px;
+    }
+  }
+  h1 {
+    color: #222222;
+  }
+  button {
+    cursor: pointer;
+    padding: 15px 30px;
+    border: none;
+    background-color: #222222;
+    color: white;
+    font-size: 15px;
+    transition: 0.4s ease-in-out;
+    &:hover {
+      padding: 15px 35px;
+      //   transform: scale(1.05);
+    }
+  }
+}

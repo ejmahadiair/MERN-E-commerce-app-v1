@@ -1,0 +1,121 @@
+.order-details-container {
+  background-color: #eff0f5;
+  padding: 20px;
+  .order-details-box {
+    width: 80%;
+    margin: auto;
+    .top {
+      background-color: white;
+      margin: 10px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      padding: 10px;
+      .left {
+        .order-place-time {
+          color: #888888;
+        }
+        .details-key {
+          .order-id {
+            cursor: pointer;
+            &:hover {
+              color: #309cc0;
+            }
+          }
+        }
+      }
+      .right {
+        p {
+          color: #888888;
+          span {
+            color: black;
+          }
+        }
+      }
+    }
+    .center {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      background-color: white;
+      padding: 10px;
+      .order-image {
+        width: 80px;
+        height: 100px;
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+      .quantity {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        .qty {
+          color: #888888;
+        }
+      }
+      .order-cancle {
+        cursor: pointer;
+        color: #309cc0;
+      }
+    }
+    .bottom {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      background-color: white;
+      margin: 10px 0;
+      padding: 10px;
+      height: max-content;
+      .left {
+        width: 50%;
+        .shipping-info {
+          p {
+            span {
+              color: #666666;
+            }
+          }
+        }
+      }
+
+      .right {
+        width: 50%;
+        .summary-info {
+          .info {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0;
+          }
+          .hr-line {
+            width: 100%;
+            border-bottom: 1px solid #666666;
+            margin: 20px 0;
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 1050px) {
+  .order-details-container {
+    .order-details-box {
+      width: 95%;
+      .bottom {
+        flex-direction: column;
+        gap: 50px;
+        .left {
+          width: 100%;
+        }
+        .right {
+          width: 100%;
+        }
+      }
+    }
+  }
+}

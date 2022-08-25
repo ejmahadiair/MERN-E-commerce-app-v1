@@ -1,0 +1,31 @@
+.payment-container {
+  h1 {
+    text-align: center;
+    margin-top: 20px;
+  }
+  form {
+    width: 350px;
+    height: fit-content;
+    margin: 20px auto;
+    padding: 10px;
+    div {
+      margin: 20px 0;
+      position: relative;
+      .card-payment-icon {
+        position: absolute;
+        top: 50%;
+        left: 5px;
+        transform: translateY(-50%);
+      }
+      .card-payment {
+        padding-left: 40px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+    }
+    input {
+      width: 100%;
+      font-size: 20px;
+    }
+  }
+}

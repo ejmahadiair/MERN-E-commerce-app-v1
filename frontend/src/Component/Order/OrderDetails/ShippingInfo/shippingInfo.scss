@@ -1,0 +1,44 @@
+.Shipping-info-container {
+  .shipping-info-tag {
+    width: fit-content;
+    height: fit-content;
+    margin: 20px auto;
+    h2 {
+      letter-spacing: 3px;
+      color: #686868;
+      font-weight: lighter;
+    }
+    .shipping-info-line {
+      width: 100%;
+      border-bottom: 1.5px solid #686868;
+      margin: 10px auto;
+    }
+  }
+  form {
+    width: fit-content;
+    margin: 20px auto;
+    padding: 10px;
+    box-sizing: border-box;
+    .info {
+      margin: 10px;
+      position: relative;
+      .info-icon {
+        position: absolute;
+        top: 25%;
+        left: 5px;
+      }
+      input,
+      select {
+        padding: 15px 5px 15px 35px;
+        outline: none;
+        border: 1px solid #686868;
+        border-radius: 3px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+      button {
+        width: 100%;
+      }
+    }
+  }
+}

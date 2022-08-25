@@ -1,0 +1,78 @@
+* {
+  margin: 0.2px;
+  scroll-behavior: smooth;
+}
+.appContainer {
+  overflow-x: hidden;
+  // design for pagination if i use pagination component in multiple component
+  .pagination-container {
+    .pagination {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 10px;
+      justify-content: center;
+      list-style: none;
+      width: fit-content;
+      margin: 0 auto;
+      .page-item {
+        margin: 0;
+        border: 1px solid #585858;
+        transition: all 0.4s ease-in-out;
+        .page-link {
+          display: block;
+          text-decoration: none;
+          font-weight: bold;
+          padding: 7px 15px;
+          background-color: transparent;
+          color: #585858;
+        }
+        &:hover {
+          background-color: rgba(89, 89, 89, 0.2);
+          color: black;
+        }
+
+        &:first-child {
+          border-radius: 5px 0 0 5px;
+        }
+        &:last-child {
+          border-radius: 0 5px 5px 0;
+        }
+      }
+      .pageItemActive {
+        background-color: #585858;
+        .pageLinkActive {
+          color: #fff;
+        }
+      }
+    }
+  }
+}
+.button-design-tomato {
+  cursor: pointer;
+  padding: 10px 15px;
+  border: 1px solid tomato;
+  border-radius: 5px;
+  background-color: transparent;
+  text-align: center;
+  transition: 0.4s ease-in-out;
+  &:hover {
+    background-color: tomato;
+    color: white;
+  }
+}
+.input-design-tomato {
+  padding: 10px;
+  border: 1px solid tomato;
+  outline: none;
+  border-radius: 5px;
+}
+.cover-on-off {
+  cursor: pointer;
+  z-index: 6;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba($color: #000000, $alpha: 0.5);
+}
