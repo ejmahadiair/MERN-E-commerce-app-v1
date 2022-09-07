@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { logOutUser } from "../../actions/userAction";
+import { getAllOrders } from "../../actions/orderAction";
+import { getAllProducts } from "../../actions/productActions";
+import { getAllUsers, logOutUser } from "../../actions/userAction";
 import UserOptionSetting from "../../Icons/user-icons/user-options4.svg";
 import "./userOptions.scss";
 const UserOptions = () => {
@@ -10,12 +12,21 @@ const UserOptions = () => {
   //user control
   const { user } = useSelector((state) => state.user);
   //
+
   //logut activatis
   const dispatch = useDispatch();
 
   const logOutHandler = () => {
     dispatch(logOutUser());
   };
+  const adminHandlere = useCallback(() => {
+    dispatch(getAllProducts());
+    dispatch(getAllOrders());
+    dispatch(getAllUsers());
+  }, [dispatch]);
+  useEffect(() => {
+    adminHandlere();
+  }, [adminHandlere]);
   //
   return (
     <>

@@ -4,6 +4,9 @@ import {
   CREATE_ORDER_FAIL,
   CREATE_ORDER_REQUEST,
   CREATE_ORDER_SUCCESS,
+  GET_ALL_ORDERS_FAIL,
+  GET_ALL_ORDERS_REQUEST,
+  GET_ALL_ORDERS_SUCCESS,
   MY_ORDERS_FAIL,
   MY_ORDERS_REQUEST,
   MY_ORDERS_SUCCESS,
@@ -34,6 +37,21 @@ export const myOrders = () => async (dispatch) => {
     dispatch({ type: MY_ORDERS_SUCCESS, payload: data.orders });
   } catch (error) {
     dispatch({ type: MY_ORDERS_FAIL, payload: error.response.data.message });
+  }
+};
+
+//get all orders admin
+export const getAllOrders = () => async (dispatch) => {
+  try {
+    dispatch({ type: GET_ALL_ORDERS_REQUEST });
+    const res = await axios.get(`/api/v1/admin/orders`);
+    console.log("all orders: ", res.data);
+    dispatch({ type: GET_ALL_ORDERS_SUCCESS, payload: res.data });
+  } catch (error) {
+    dispatch({
+      type: GET_ALL_ORDERS_FAIL,
+      payload: error.response.data.message,
+    });
   }
 };
 

@@ -9,7 +9,11 @@ const AdminProtectedRoute = ({ redirectPath = "/account" }) => {
   if (isAuthenticated && user.role === "admin") {
     return <Outlet />;
   } else {
-    alert.error("You are not an admin");
+    if (user.role !== "admin") {
+      alert.error(
+        "If you think you are an admin you have admin panal. Go with admin panal button."
+      );
+    }
     return <Navigate to={redirectPath} />;
   }
 };

@@ -9,10 +9,25 @@ import {
   CLEAR_ERROR,
   CATEGORY_ON,
   CATEGORY_OFF,
+  JUST_ALL_PRODUCT_FAIL,
+  JUST_ALL_PRODUCT_REQUEST,
+  JUST_ALL_PRODUCT_SUCCESS,
+  PRODUCT_DELETE_FAIL,
+  PRODUCT_DELETE_REQUEST,
+  PRODUCT_DELETE_SUCCESS,
+  NEW_PRODUCT_FAIL,
+  NEW_PRODUCT_REQUEST,
+  NEW_PRODUCT_SUCCESS,
 } from "../constants/productConstant";
 
 export const getProduct =
-  (keyword = "", currentPage, price = [0, 1000], category, ratings = 0) =>
+  (
+    keyword = "",
+    currentPage = 1,
+    price = [0, Number.POSITIVE_INFINITY],
+    category,
+    ratings = 0
+  ) =>
   async (dispatch) => {
     try {
       dispatch({ type: ALL_PRODUCT_REQUEST });
@@ -33,6 +48,36 @@ export const getProduct =
     }
   };
 
+//Get Just all products
+export const getAllProducts = () => async (dispatch) => {
+  try {
+    dispatch({ type: JUST_ALL_PRODUCT_REQUEST });
+
+    const res = await axios.get(`/api/v1/all/products`);
+    dispatch({ type: JUST_ALL_PRODUCT_SUCCESS, payload: res.data });
+  } catch (error) {
+    dispatch({
+      type: JUST_ALL_PRODUCT_FAIL,
+      payload: error.response.data.message,
+    });
+  }
+};
+//create new product
+export const createNewProduct = (product) => async (dispatch) => {
+  try {
+    dispatch({ type: NEW_PRODUCT_REQUEST });
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    const res = await axios.post(`/api/v1/admin/product/new`, product, config);
+    dispatch({ type: NEW_PRODUCT_SUCCESS, payload: res.data });
+  } catch (error) {
+    dispatch({ type: NEW_PRODUCT_FAIL, payload: error.response.data.message });
+  }
+};
+
 export const getProductDetails = (id) => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_DETAILS_REQUEST });
@@ -42,6 +87,19 @@ export const getProductDetails = (id) => async (dispatch) => {
     dispatch({
       type: PRODUCT_DETAILS_FAIL,
       payload: error.message,
+    });
+  }
+};
+
+export const deleteProduct = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: PRODUCT_DELETE_REQUEST });
+    const res = await axios.delete(`/api/v1/admin/product/${id}`);
+    dispatch({ type: PRODUCT_DELETE_SUCCESS, payload: res.data });
+  } catch (error) {
+    dispatch({
+      type: PRODUCT_DELETE_FAIL,
+      payload: error.response.data.message,
     });
   }
 };

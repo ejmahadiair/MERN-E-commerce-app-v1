@@ -2,12 +2,14 @@ import React from "react";
 import { useEffect } from "react";
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
-import { clearError, getProduct } from "../../../actions/productActions";
+import { clearError, getAllProducts } from "../../../actions/productActions";
 import Loader from "../../loader/Loader";
 import "./myReviews.scss";
 import Review from "./Review/Review";
 const MyReviews = () => {
-  const { loading, error, products } = useSelector((state) => state.products);
+  const { loading, error, products } = useSelector(
+    (state) => state.getProducts
+  );
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const alert = useAlert();
@@ -16,7 +18,7 @@ const MyReviews = () => {
       alert.error("Review not found");
       dispatch(clearError());
     }
-    dispatch(getProduct());
+    dispatch(getAllProducts());
   }, [alert, dispatch, error]);
   return (
     <>

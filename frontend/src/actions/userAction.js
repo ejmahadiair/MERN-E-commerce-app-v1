@@ -23,6 +23,9 @@ import {
   RESET_PASSWORD_FAIL,
   RESET_PASSWORD_REQUEST,
   RESET_PASSWORD_SUCCESS,
+  GET_ALL_USERS_FAIL,
+  GET_ALL_USERS_REQUEST,
+  GET_ALL_USERS_SUCCESS,
 } from "../constants/userConstant";
 import axios from "axios";
 
@@ -166,6 +169,21 @@ export const resetPassword =
       });
     }
   };
+
+//get all users admin
+export const getAllUsers = () => async (dispatch) => {
+  try {
+    dispatch({ type: GET_ALL_USERS_REQUEST });
+    const res = await axios.get(`/api/v1/admin/users`);
+    dispatch({ type: GET_ALL_USERS_SUCCESS, payload: res.data });
+  } catch (error) {
+    dispatch({
+      type: GET_ALL_USERS_FAIL,
+      payload: error.response.data.message,
+    });
+  }
+};
+
 export const clearErrors = () => async (dispatch) => {
   dispatch({ type: CLEAR_ERROR });
 };

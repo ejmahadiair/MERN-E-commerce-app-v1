@@ -1,6 +1,61 @@
 .dashboard-container {
-  border: 1px solid red;
   z-index: 5;
   background-color: white;
   text-align: center;
+  height: max-content;
+  h1 {
+    color: #777777;
+    margin-top: 30px;
+    text-align: center;
+  }
+  .total-amount {
+    user-select: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    margin: 15px 0 15px 0;
+    gap: 15px;
+    width: 100%;
+    background-color: #299647;
+    color: white;
+    text-align: center;
+  }
+  .item-summary {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin: 15px 0 15px 0;
+    flex-wrap: wrap;
+    .item {
+      background-color: #299647;
+      width: 8vmax;
+      height: 8vmax;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      gap: 10px;
+      padding: 10px;
+      font-size: 1.5vmax;
+      &:first-child {
+        background-color: tomato;
+      }
+      &:last-child {
+        background-color: #46469e;
+      }
+    }
+  }
+  .chart-view {
+    width: 80%;
+    margin: 20px auto;
+    .doughnutChart {
+      width: 30vmax;
+      margin: 15px auto;
+    }
+  }
 }

@@ -28,7 +28,7 @@ import CreateProduct from "./Component/Admin panal/Panal Views/CreateProduct/Cre
 import Orders from "./Component/Admin panal/Panal Views/orders/Orders";
 import Users from "./Component/Admin panal/Panal Views/Users/Users";
 import Reviews from "./Component/Admin panal/Panal Views/Reviews/Reviews";
-
+import UpdateProduct from "./Component/Admin panal/Panal Views/Update Product/UpdateProduct";
 export const accountContext = createContext();
 function App() {
   const { user, isAuthenticated } = useSelector((state) => state.user);
@@ -76,6 +76,7 @@ function App() {
               <Route path="/admin/orders" element={<Orders />} />
               <Route path="/admin/users" element={<Users />} />
               <Route path="/admin/reviews" element={<Reviews />} />
+              <Route path="/admin/product/:id" element={<UpdateProduct />} />
             </Route>
           </Route>
         </Routes>

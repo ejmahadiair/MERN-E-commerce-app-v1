@@ -16,11 +16,14 @@
   .right {
     width: 80%;
     height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
   }
 }
 @media screen and (max-width: 850px) {
   .panal-container {
     flex-direction: column;
+    height: 100vh;
     .left {
       width: 99.98%;
       height: max-content;

@@ -63,7 +63,7 @@ const ProductDetails = () => {
     isHalf: true,
   };
 
-  //constorl captcha number
+  //contorl captcha number
   const [ok, setOk] = useState("");
   const [fnum, setFnum] = useState(0);
   const [snum, setSnum] = useState(0);
@@ -151,6 +151,8 @@ const ProductDetails = () => {
     for (let i = 0; i < orders.length; i++) {
       if (orders[i].orderItem[0].product === params.id) {
         return true;
+      } else {
+        return false;
       }
     }
     return false;
@@ -180,11 +182,35 @@ const ProductDetails = () => {
         setSnum(capdata[1]);
         setGsum(capdata[2]);
         setSum("");
+        alert.error("Captcha Did not matched!");
       }
     } else if (!isAuthenticated) {
       alert.error("You are not Authenticated please Login first");
+      let capdata = captcha();
+      setFnum(capdata[0]);
+      setSnum(capdata[1]);
+      setGsum(capdata[2]);
+      setSum("");
     } else if (!orderByThisUser) {
-      alert.error("You did not order this product");
+      if (Number(gsum) === Number(sum)) {
+        setOk("YES");
+        let capdata = captcha();
+        setFnum(capdata[0]);
+        setSnum(capdata[1]);
+        setGsum(capdata[2]);
+        setSum("");
+        alert.error("You did not order this product");
+      } else if (Number(gsum) !== Number(sum)) {
+        setOk("NO");
+        let capdata = captcha();
+        setFnum(capdata[0]);
+        setSnum(capdata[1]);
+        setGsum(capdata[2]);
+        setSum("");
+        alert.error("Captcha Did not matched!");
+      } else {
+        alert.error("You did not order this product");
+      }
     }
   };
   useEffect(() => {

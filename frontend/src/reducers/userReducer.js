@@ -25,6 +25,10 @@ import {
   RESET_PASSWORD_REQUEST,
   RESET_PASSWORD_FAIL,
   RESET_PASSWORD_SUCCESS,
+  GET_ALL_USERS_REQUEST,
+  GET_ALL_USERS_SUCCESS,
+  GET_ALL_USERS_FAIL,
+  GET_ALL_USERS_RESET,
 } from "../constants/userConstant";
 export const userReducer = (state = { user: {} }, action) => {
   switch (action.type) {
@@ -120,6 +124,40 @@ export const profileReducer = (state = { user: {} }, action) => {
       return {
         ...state,
         error: null,
+      };
+
+    default:
+      return state;
+  }
+};
+
+//GET ALL USERS REDUCER ADMIN
+export const getAllUsersReducer = (state = {}, action) => {
+  switch (action.type) {
+    case GET_ALL_USERS_REQUEST:
+      return {
+        ...state,
+        allUserLoading: true,
+      };
+    case GET_ALL_USERS_SUCCESS:
+      return {
+        ...state,
+        success: true,
+        allUserLoading: false,
+        allusers: action.payload,
+      };
+    case GET_ALL_USERS_FAIL:
+      return {
+        ...state,
+        allUserLoading: false,
+        allUserError: action.payload,
+      };
+    case GET_ALL_USERS_RESET:
+      return {
+        ...state,
+        success: false,
+        allusers: {},
+        allUserError: null,
       };
 
     default:

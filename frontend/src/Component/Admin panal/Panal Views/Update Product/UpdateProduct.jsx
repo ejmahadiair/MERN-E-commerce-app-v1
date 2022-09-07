@@ -3,14 +3,19 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useAlert } from "react-alert";
-import "./createProduct.scss";
+import "./updateProduct.scss";
 import {
   clearError,
   createNewProduct,
+  getProductDetails,
 } from "../../../../actions/productActions";
-import { NEW_PRODUCT_RESET } from "../../../../constants/productConstant";
 import Loader from "../../../loader/Loader";
-const CreateProduct = () => {
+import { useParams } from "react-router-dom";
+const UpdateProduct = () => {
+  const { loading, product, error } = useSelector(
+    (state) => state.productDetails
+  );
+  console.log("product: ", product);
   const catagory = [
     "T-Shirt",
     "MobilePhone",
@@ -19,16 +24,17 @@ const CreateProduct = () => {
     "Cloths",
     "Laptops",
   ];
-  const { error, loading, success } = useSelector((state) => state.newProduct);
   const dispatch = useDispatch();
   const alert = useAlert();
+  const params = useParams();
 
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [category, setCategory] = useState("");
-  const [Stock, setStock] = useState(1);
+  const [Stock, setStock] = useState(0);
   const [description, setDescription] = useState("");
   const [images, setImages] = useState([]);
+  const [oldImages, setOldImages] = useState([]);
   const [imagePreview, setIamgePreview] = useState([]);
 
   useEffect(() => {
@@ -36,11 +42,24 @@ const CreateProduct = () => {
       alert.error(error);
       dispatch(clearError());
     }
-    if (success) {
-      alert.success("New Product Added Successfully");
-      dispatch({ type: NEW_PRODUCT_RESET });
+
+    if (product && product._id !== params.id) {
+      dispatch(getProductDetails(params.id));
+      setName(product.name);
+      setPrice(product.price);
+      setCategory(product.category);
+      setStock(product.Stock);
+      setDescription(product.description);
+      setOldImages(product.images);
+    } else {
+      setName(product.name);
+      setPrice(product.price);
+      setCategory(product.category);
+      setStock(product.Stock);
+      setDescription(product.description);
+      setOldImages(product.images);
     }
-  }, [error, success, alert, dispatch]);
+  }, [dispatch, params.id, alert, error, product]);
 
   const imageChange = (e) => {
     const file = Array.from(e.target.files);
@@ -60,26 +79,26 @@ const CreateProduct = () => {
 
   const submitNewProduct = (e) => {
     e.preventDefault();
-    const myForm = new FormData();
-    myForm.set("name", name);
-    myForm.set("price", price);
-    myForm.set("description", description);
-    myForm.set("category", category);
-    myForm.set("Stock", Stock);
+    // const myForm = new FormData();
+    // myForm.set("name", name);
+    // myForm.set("price", price);
+    // myForm.set("description", description);
+    // myForm.set("category", category);
+    // myForm.set("Stock", Stock);
 
-    images.forEach((image) => {
-      myForm.append("images", image);
-    });
+    // images.forEach((image) => {
+    //   myForm.append("images", image);
+    // });
 
-    dispatch(createNewProduct(myForm));
+    // dispatch(createNewProduct(myForm));
 
-    setName("");
-    setPrice("");
-    setCategory("");
-    setStock(1);
-    setDescription("");
-    setImages([]);
-    setIamgePreview([]);
+    // setName("");
+    // setPrice("");
+    // setCategory("");
+    // setStock(1);
+    // setDescription("");
+    // setImages([]);
+    // setIamgePreview([]);
   };
 
   return (
@@ -87,7 +106,7 @@ const CreateProduct = () => {
       {loading ? (
         <Loader />
       ) : (
-        <div className="create-product-container">
+        <div className="update-product-container">
           <form onSubmit={submitNewProduct}>
             <input
               className="fild-style"
@@ -173,4 +192,4 @@ const CreateProduct = () => {
   );
 };
 
-export default CreateProduct;
+export default UpdateProduct;

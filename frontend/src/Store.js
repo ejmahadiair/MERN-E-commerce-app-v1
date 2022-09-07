@@ -3,16 +3,21 @@ import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 import {
   categoryOnOffReducer,
+  getAllProductReducer,
+  newProductReducer,
+  productDeleteReducer,
   productDetailReducer,
   productReducer,
 } from "./reducers/ProductReducer";
 import {
   forgotPassworReducer,
+  getAllUsersReducer,
   profileReducer,
   userReducer,
 } from "./reducers/userReducer";
 import { cartReducer } from "./reducers/cartReducer";
 import {
+  getAllOrdersReducer,
   myOrderReducer,
   newOrderRequest,
   orderDetailsReducer,
@@ -21,14 +26,19 @@ import { newReviewReducer } from "./reducers/reviewReducer";
 
 const reducer = combineReducers({
   products: productReducer,
+  getProducts: getAllProductReducer,
+  newProduct: newProductReducer,
   productDetails: productDetailReducer,
+  deleteProduct: productDeleteReducer,
   categoryOnOff: categoryOnOffReducer,
   user: userReducer,
+  getAllUsers: getAllUsersReducer,
   updateUser: profileReducer,
   forgotPassword: forgotPassworReducer,
   addToCart: cartReducer,
   newOrder: newOrderRequest,
   myOrders: myOrderReducer,
+  getAllOrders: getAllOrdersReducer,
   orderDetails: orderDetailsReducer,
   newReview: newReviewReducer,
 });

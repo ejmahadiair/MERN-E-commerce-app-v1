@@ -9,6 +9,7 @@ const {
   createAndUpdateProductReview,
   getAProductAllReviews,
   deleteReview,
+  getJustAllProduct,
 } = require("../controllers/productControllers");
 const { isAuthenticatedUser, authorizeRoles } = require("../middleware/auth");
 
@@ -17,6 +18,7 @@ const { isAuthenticatedUser, authorizeRoles } = require("../middleware/auth");
 const productRoute = express.Router();
 
 productRoute.route("/products").get(getAllProducts);
+productRoute.route("/all/products").get(getJustAllProduct);
 
 productRoute
   .route("/admin/product/new")

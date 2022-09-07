@@ -3,11 +3,30 @@
 //internal imports
 const Product = require("../models/productModel");
 const Apifetures = require("../utils/apifetures");
+const cloudinary = require("cloudinary");
 //
 
 //Create Product --Admin
 
 exports.createProduct = async (req, res, next) => {
+  let images = [];
+  if (typeof req.body.images === "string") {
+    images.push(req.body.images);
+  } else {
+    images = req.body.images;
+  }
+  const imagesLinks = [];
+
+  for (let i = 0; i < images.length; i++) {
+    const result = await cloudinary.v2.uploader.upload(images[i], {
+      folder: "products",
+    });
+    imagesLinks.push({
+      public_id: result.public_id,
+      url: result.secure_url,
+    });
+  }
+  req.body.images = imagesLinks;
   req.body.user = req.user.id;
   let product;
   try {
@@ -35,7 +54,7 @@ exports.createProduct = async (req, res, next) => {
 exports.getAllProducts = async (req, res, next) => {
   let products;
   let apifetures;
-  let resultPerPage = 4;
+  let resultPerPage = 12;
   const productCount = await Product.countDocuments();
   let filterProductCount;
   try {
@@ -65,6 +84,24 @@ exports.getAllProducts = async (req, res, next) => {
     resultPerPage,
     filterProductCount,
   });
+};
+
+//Get Just all products
+exports.getJustAllProduct = async (req, res, next) => {
+  let products;
+  try {
+    products = await Product.find({});
+  } catch (e) {
+    console.log("Problem in get just all products e: ", e);
+  }
+  if (!products) {
+    return res
+      .status(404)
+      .json({ message: "No Products found", success: false });
+  }
+  return res
+    .status(200)
+    .json({ message: "All products", success: true, products });
 };
 //update product --admin
 exports.updateProduct = async (req, res, next) => {
@@ -120,9 +157,12 @@ exports.deleteProduct = async (req, res, next) => {
       success: false,
     });
   }
+  for (let i = 0; i < product.images.length; i++) {
+    await cloudinary.v2.uploader.destroy(product.images[i].public_id);
+  }
   return res
     .status(200)
-    .json({ message: "Product Deleted successfully ", success: true });
+    .json({ message: "Product Deleted successfully ", success: true, product });
 };
 //Get Product Details
 exports.getProductDetail = async (req, res, next) => {

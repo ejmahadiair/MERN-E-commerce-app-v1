@@ -19,11 +19,12 @@ import MetaData from "../MetaData";
 
 const catagoris = [
   { name: "Select Catagory", disabled: "disabled" },
-  { name: "Laptop" },
   { name: "T-Shirt" },
-  { name: "Mobile" },
-  { name: "SomeThing" },
+  { name: "MobilePhone" },
   { name: "Electronics" },
+  { name: "Grocery" },
+  { name: "Cloths" },
+  { name: "Laptops" },
 ];
 
 const Products = () => {
@@ -40,7 +41,7 @@ const Products = () => {
   //price filter control
   const [minPrice, setMinprice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(1000);
-  const [price, setPrice] = useState([0, 1000]);
+  const [price, setPrice] = useState([0, Number.POSITIVE_INFINITY]);
   console.log(`products: ${products.length}`);
   //
 

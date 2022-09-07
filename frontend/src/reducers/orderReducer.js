@@ -3,6 +3,9 @@ import {
   CREATE_ORDER_FAIL,
   CREATE_ORDER_REQUEST,
   CREATE_ORDER_SUCCESS,
+  GET_ALL_ORDERS_FAIL,
+  GET_ALL_ORDERS_REQUEST,
+  GET_ALL_ORDERS_SUCCESS,
   MY_ORDERS_FAIL,
   MY_ORDERS_REQUEST,
   MY_ORDERS_SUCCESS,
@@ -63,6 +66,33 @@ export const myOrderReducer = (state = { orders: [] }, action) => {
       return state;
   }
 };
+
+//GET ALL ORDERS ADMIN
+export const getAllOrdersReducer = (state = {}, action) => {
+  switch (action.type) {
+    case GET_ALL_ORDERS_REQUEST:
+      return {
+        ...state,
+        allOrderLoading: true,
+      };
+    case GET_ALL_ORDERS_SUCCESS:
+      return {
+        ...state,
+        allOrderLoading: false,
+        allorders: action.payload,
+      };
+    case GET_ALL_ORDERS_FAIL:
+      return {
+        ...state,
+        allOrderLoading: false,
+        allOrderError: action.payload,
+      };
+
+    default:
+      return state;
+  }
+};
+
 export const orderDetailsReducer = (state = { order: {} }, action) => {
   switch (action.type) {
     case ORDER_DETAILS_REQUEST:
